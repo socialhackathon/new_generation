@@ -1,21 +1,53 @@
-/* These styles are generated from project.scss. */
-
-.alert-debug {
-  color: black;
-  background-color: white;
-  border-color: #d6e9c6;
+body, html {
+    height: 100%;
 }
 
-.alert-error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+
+.bar{
+    height: 10%;
 }
 
-/* Display django-debug-toolbar.
-   See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
-   and https://github.com/pydanny/cookiecutter-django/issues/317
-*/
-[hidden][style="display: block;"] {
-  display: block !important;
+.shadowtext {
+    text-shadow: 1px 1px 2px black, 0 0 1em red;
+    color: white;
+    font-weight: bold;
+}
+
+.button_block{
+    margin: 5%;
+}
+
+.center_block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.center_block p {
+    width: 60%;
+    padding: 15px;
+}
+
+.name {
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 110%;
+    margin-left: 3%;
+}
+
+.icon{
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 8%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("https://i.imgur.com/K4vWhqd.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
