@@ -8,10 +8,10 @@ from django.views.decorators.cache import cache_control
 
 urlpatterns = [
     url('', include('pwa.urls')),
-    url(r'^sw.js', cache_control(max_age=2592000)(TemplateView.as_view(
+    url(r'^serviceworker.js', cache_control(max_age=2592000)(TemplateView.as_view(
         template_name="sw.js",
         content_type='application/javascript',
-    )), name='sw.js'),
+    )), name='serviceworker.js'),
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^map/$', TemplateView.as_view(template_name='pages/map.html'), name='map'),
     url(r'^fastmap/$', TemplateView.as_view(template_name='pages/fastmap.html'), name='fastmap'),
