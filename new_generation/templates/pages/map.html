@@ -1,0 +1,220 @@
+{% load static i18n %}<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-light bg-faded" style="background-color: indigo;">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/icon.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                <span style="color: white; font-weight: bold">Новая Скорая</span>
+            </a>
+        </nav>
+<div class="row" style="height: 90%;width: 100%">
+    <div class="col-sm-8">
+        <div id="map" style="width:100%;height:100%"></div>
+    </div>
+    <div class="col-sm-4 frame ">
+        <ul></ul>
+        <div>
+            <div class="msj-rta macro" style="margin:auto">
+                <div class="text text-r" style="background:whitesmoke !important">
+                    <input class="mytext" placeholder="Type a message"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJvQ2NyxFkaY04GUEToEABxy26kfjooK4&callback=myMap"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	var me = {};
+me.avatar = "https://lh6.googleusercontent.com/-lr2nyjhhjXw/AAAAAAAAAAI/AAAAAAAARmE/MdtfUmC0M4s/photo.jpg?sz=48";
+
+var you = {};
+you.avatar = "https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg";
+
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
+
+//-- No use time. It is a javaScript effect.
+function insertChat(who, text, time = 0){
+    var control = "";
+    var date = formatAMPM(new Date());
+
+    if (who == "me"){
+
+        control = '<li style="width:100%">' +
+                        '<div class="msj macro">' +
+                        '<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
+                            '<div class="text text-l">' +
+                                '<p>'+ text +'</p>' +
+                                '<p><small>'+date+'</small></p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</li>';
+    }else{
+        control = '<li style="width:100%;">' +
+                        '<div class="msj-rta macro">' +
+                            '<div class="text text-r">' +
+                                '<p>'+text+'</p>' +
+                                '<p><small>'+date+'</small></p>' +
+                            '</div>' +
+                        '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' +
+                  '</li>';
+    }
+    setTimeout(
+        function(){
+            $("ul").append(control);
+
+        }, time);
+
+}
+
+function resetChat(){
+    $("ul").empty();
+}
+
+$(".mytext").on("keyup", function(e){
+    if (e.which == 13){
+        var text = $(this).val();
+        if (text !== ""){
+            insertChat("me", text);
+            $(this).val('');
+        }
+    }
+});
+
+//-- Clear Chat
+resetChat();
+
+//-- Print Messages
+insertChat("you", "Hello Tom...", 0);
+insertChat("me", "Hi, Pablo", 1500);
+insertChat("me", "What would you like to talk about today?", 3500);
+insertChat("you", "Tell me a joke",7000);
+insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!", 9500);
+insertChat("you", "LOL", 12000);
+    var lastpos
+setTimeout(
+        function(){
+
+        map.setZoom(13)
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        lastpos=new google.maps.LatLng(42.842065, 74.607018)
+    var request = {
+        origin: lastpos, //точка старта
+        destination: userPos, //точка финиша
+        travelMode: google.maps.DirectionsTravelMode.DRIVING //режим прокладки маршрута
+    };
+var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function(response, status) {
+        console.log(response)
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+            marker.setMap(null)
+    directionsDisplay.setMap(map);
+
+        }, 13000);
+
+    setTimeout(
+        function(){
+    var index=0
+    var timer = setInterval(function() {
+  // вычислить сколько времени прошло с начала анимации
+
+  if (index == arr.length) {
+
+    directionsDisplay.setMap(null);
+      marker = new google.maps.Marker({
+          position: userPos,
+          map: map
+        });
+    map.setCenter(userPos);
+      insertChat("you", "DONE!",0);
+    clearInterval(timer); // конец через 2 секунды
+    return;
+  }
+
+  // рисует состояние анимации, соответствующее времени timePassed
+  var request = {
+        origin: arr[index], //точка старта
+        destination: userPos, //точка финиша
+        travelMode: google.maps.DirectionsTravelMode.DRIVING //режим прокладки маршрута
+    };
+var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function(response, status) {
+        console.log(response)
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+
+        }
+    });
+    directionsDisplay.setMap(map);
+    index++
+}, 500);
+
+        }, 13100);
+
+            console.log(arr)
+
+var arr=[new google.maps.LatLng(42.842903, 74.608679),
+new google.maps.LatLng(42.841684, 74.608638),
+new google.maps.LatLng(42.840150, 74.608499),
+new google.maps.LatLng(42.838765, 74.608327),
+new google.maps.LatLng(42.837522, 74.608145),
+new google.maps.LatLng(42.836806, 74.608070),
+new google.maps.LatLng(42.835131, 74.607887),
+new google.maps.LatLng(42.834100, 74.607802),
+new google.maps.LatLng(42.833022, 74.607651),
+new google.maps.LatLng(42.831433, 74.607501),
+new google.maps.LatLng(42.830465, 74.607405),
+new google.maps.LatLng(42.829458, 74.607287),
+new google.maps.LatLng(42.828191, 74.607190),
+new google.maps.LatLng(42.827585, 74.609840),
+new google.maps.LatLng(42.826806, 74.611310),
+new google.maps.LatLng(42.825941, 74.612565),
+new google.maps.LatLng(42.825059, 74.613499),
+new google.maps.LatLng(42.824485, 74.614035),
+new google.maps.LatLng(42.823729, 74.614958),
+new google.maps.LatLng(42.822919, 74.616031),
+new google.maps.LatLng(42.822305, 74.616889),
+new google.maps.LatLng(42.821605, 74.617887),
+new google.maps.LatLng(42.820849, 74.619013),
+new google.maps.LatLng(42.820023, 74.620301),
+new google.maps.LatLng(42.819173, 74.621599),
+new google.maps.LatLng(42.818544, 74.622532),
+new google.maps.LatLng(42.817780, 74.623702),
+new google.maps.LatLng(42.817166, 74.624742),
+new google.maps.LatLng(42.816316, 74.626073),
+new google.maps.LatLng(42.815710, 74.626942),
+new google.maps.LatLng(42.814931, 74.628219),
+new google.maps.LatLng(42.814168, 74.629420),
+new google.maps.LatLng(42.813955, 74.629667),
+new google.maps.LatLng(42.813573, 74.630411),
+new google.maps.LatLng(42.813507, 74.628971),
+new google.maps.LatLng(42.813268, 74.626848),
+new google.maps.LatLng(42.812353, 74.626299),
+new google.maps.LatLng(42.811013, 74.626417)]
+//-- NOTE: No use time on insertChat.
+	</script>
+</body>
+</html>
