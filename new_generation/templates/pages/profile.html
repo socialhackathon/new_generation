@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <link rel="stylesheet" href="css/enter.css" />
+    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
@@ -11,8 +12,8 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-faded" style="background-color: indigo;">
-            <a class="navbar-brand" href="#">
-                <img src="image/icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <a class="navbar-brand" href="{% url "home" %}">
+                <img src="{% static 'images/icon.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
                 <span style="color: white; font-weight: bold">Новая Скорая</span>
             </a>
         </nav>
