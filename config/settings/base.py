@@ -45,11 +45,23 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
+    'pwa',
     'crispy_forms',  # Form layouts
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
 ]
+
+PWA_APP_NAME = 'New Ambulance'
+PWA_APP_DESCRIPTION = "Call ambulance via app"
+PWA_APP_THEME_COLOR = '#0A0302'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/icon.svg',
+        'sizes': '160x160'
+    }
+]
+
 
 # Apps specific for this project go here.
 LOCAL_APPS = [

@@ -4,8 +4,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.views.decorators.cache import cache_control
 
 urlpatterns = [
+    url('', include('pwa.urls')),
+    url(r'^sw.js', cache_control(max_age=2592000)(TemplateView.as_view(
+        template_name="sw.js",
+        content_type='application/javascript',
+    )), name='sw.js'),
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^map/$', TemplateView.as_view(template_name='pages/map.html'), name='map'),
     url(r'^fastmap/$', TemplateView.as_view(template_name='pages/fastmap.html'), name='fastmap'),

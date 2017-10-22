@@ -1,8 +1,10 @@
 {% load static i18n %}<!DOCTYPE html>
+{% load pwa %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% progressive_web_app_meta %}
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
@@ -40,7 +42,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"/>
-
+    <script>
+        if ('serviceWorker' in navigator) {
+         window.addEventListener('load', function() {
+           navigator.serviceWorker.register('/sw.js').then(
+             function(registration) {
+               // Registration was successful
+               console.log('ServiceWorker registration successful with scope: ', registration.scope); },
+             function(err) {
+               // registration failed 😞
+               console.log('ServiceWorker registration failed: ', err);
+             });
+         });
+        }
+      </script>
 
 
 </body>
