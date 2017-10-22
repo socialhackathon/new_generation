@@ -23,6 +23,22 @@ body, html {
     margin: 5%;
 }
 
+.header-stripe {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(214, 214, 214, 0.5);
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.help {
+  margin-right: 10px;
+}
+
 .center_block{
     display: flex;
     align-items: center;
