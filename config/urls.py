@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^map/$', TemplateView.as_view(template_name='pages/map.html'), name='map'),
     url(r'^fastmap/$', TemplateView.as_view(template_name='pages/fastmap.html'), name='fastmap'),
-    url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^help/$', TemplateView.as_view(template_name='pages/help.html'), name='help'),
+    url(r'^profile/$', TemplateView.as_view(template_name='pages/profile.html'), name='profile'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),

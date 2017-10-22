@@ -15,18 +15,22 @@
 
     <div class="bg">
         <nav class="navbar navbar-light bg-faded" style="background-color: rgba(214, 214, 214, 0.5);">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url "home" %}">
                 <img src="{% static 'images/icon.svg' %}" width="40" height="40" class="d-inline-block align-top" alt="">
                 <span class="name">Новая Скорая</span>
             </a>
-            <ul class="nav navbar-nav navbar-right"  style="width: 5%;">
-                <li >
-                <img src="{% static 'images/user.svg' %}" width="50" height="50" class="d-inline-block align-top" alt="Медкарта"></li>
+            <ul class="nav navbar-right" style="margin-right: -60% " >
+                <button onclick="location.href='{% url "help" %}'"
+                    type="button" class="btn btn-primary ">Справочник</button>
+            </ul>
+            <ul class="nav navbar-right"  style="margin-right: 2%">
+                    <button onclick="location.href='{% url "profile" %}'"
+                        type="button" class="btn btn-primary ">Медкарта</button>
             </ul>
         </nav>
         <div class="center_block">
             <p>
-                <h2 class="shadowtext" style="text-align: center;">МЕДИЦИНСКАЯ ПОМОЩЬ ОКАЗЫВАЕТСЯ ВРАЧАМИ И ФЕЛЬДШЕРАМИ, ИМЕЮЩИЕ ВЫСШУЮ КВАЛИФИКАЦИОННУЮ КАТЕГОРИЮ <br/>
+                <h2 class="shadowtext" style="text-align: center;">МЕДИЦИНСКАЯ ПОМОЩЬ ОКАЗЫВАЕТСЯ ВРАЧАМИ И ФЕЛЬДШЕРАМИ, ИМЕЮЩИЕ, ВЫСШУЮ КВАЛИФИКАЦИОННУЮ КАТЕГОРИЮ <br/>
                     <div class="button_block">
                         <button onclick="location.href='{% url "fastmap" %}'"
                             type="button" class="btn btn-danger btn-lg" style="margin-right: 2%; height: 20%; width:35%">SOS</button>
