@@ -1,8 +1,8 @@
-var cacheName = 'weatherPWA-step-6-1';
+var cacheName = 'weatherPWA-step-6-2';
 var filesToCache = [
   '/',
   '/index.html',
-  '/scripts/app.js',
+  '/js/map.js',
   '/static/css/chat.css',
   '/static/css/project.css',
   '/static/images/icon.svg',
@@ -29,6 +29,15 @@ self.addEventListener('activate', function(e) {
           return caches.delete(key);
         }
       }));
+    })
+  );
+});
+
+self.addEventListener('fetch', function(e) {
+  console.log('[ServiceWorker] Fetch', e.request.url);
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
     })
   );
 });
