@@ -67,12 +67,11 @@ $(".mytext").on("keyup", function(e){
 resetChat();
 
 //-- Print Messages
-insertChat("me", "Hello Tom...", 0);
-insertChat("you", "Hi, Pablo", 1500);
-insertChat("me", "What would you like to talk about today?", 3500);
-insertChat("you", "Tell me a joke",7000);
-insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!", 9500);
-insertChat("you", "LOL", 12000);
+insertChat("you", "Что случилось?", 0);
+insertChat("me", "Человек сломал ногу, помогите", 1500);
+insertChat("you", "Открытая рана?",3500);
+insertChat("me", "Да!", 7000);
+insertChat("you", "Принято! Машина выезжает", 9500);
 
 
 //-- NOTE: No use time on insertChat.
